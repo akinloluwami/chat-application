@@ -10,6 +10,7 @@ const MessageForm = (props) => {
     const text = value.trim();
 
     if (text.length > 0) sendMessage(creds, chatId, { text });
+    setValue("");
   };
 
   const handleChange = (event) => {
