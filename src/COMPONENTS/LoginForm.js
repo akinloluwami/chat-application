@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 const LoginForm = () => {
@@ -6,6 +7,14 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const authObject = {
+      "Project-ID": "01b4e461-f304-46b1-8fe2-987c6088436d",
+      "User-Name": username,
+      "User-Secret": password,
+    };
+    try {
+      axios.get("https://api.chatengine.io/chats");
+    } catch (error) {}
   };
   return (
     <div className="wrapper">
