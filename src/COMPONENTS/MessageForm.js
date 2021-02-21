@@ -1,4 +1,4 @@
-import { PictureOutlined } from "@ant-design/icons";
+import { PictureOutlined, SendOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { sendMessage, isTyping } from "react-chat-engine";
 const MessageForm = (props) => {
@@ -46,6 +46,9 @@ const MessageForm = (props) => {
         style={{ display: "none" }}
         onChange={handleUpload}
       />
+      <button type="submit" className="send-button">
+        <SendOutlined className="send-icon" />
+      </button>
     </form>
   );
 };
