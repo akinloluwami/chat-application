@@ -4,17 +4,28 @@ import { useState } from "react";
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     const authObject = {
       "Project-ID": "01b4e461-f304-46b1-8fe2-987c6088436d",
       "User-Name": username,
       "User-Secret": password,
     };
     try {
-      axios.get("https://api.chatengine.io/chats");
-    } catch (error) {}
+      await axios.get("https://api.chatengine.io/chats", {
+        headers: authObject,
+      });
+
+      localStorage.setItem("username", username);
+      localStorage.setItem("password", password);
+
+      window.location.reload();
+    } catch (error) {
+      setError(`Oops, bruh that shit ain't correct`);
+    }
   };
   return (
     <div className="wrapper">
@@ -38,12 +49,15 @@ const LoginForm = () => {
             required
           />
           <div align="center">
-            <button type="submit">
-              <span>Starting Texting</span>
+            <button type="submit" className="button">
+              <span>Login</span>
             </button>
           </div>
+          <h2 className="error">{error}</h2>
         </form>
       </div>
     </div>
   );
 };
+
+export default LoginForm;
